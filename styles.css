@@ -268,6 +268,7 @@ form label { font-size:.9rem; }
     gap: 1rem;
     overflow-x: hidden; 
   }
+}
 
 .card {
   perspective:1000px;
