@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kdrama Quiz</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 100px;
+            padding-bottom: 2rem;
+        }
+
+        .quiz-container {
+            background: #1f1f1f;
+            padding: 2rem;
+            border-radius: 1rem;
+            margin: 20px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .question {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .answers label {
+            display: block;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+        }
+
+        button {
+            margin-top: 1rem;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            background: #1db954;
+            color: #fff;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #17a94d;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <a href="#">MyKDramaLog</a>
+
+        <!-- Hamburger Icon -->
+        <button class="hamburger" id="hamburgerBtn">
+            <i class="ri-menu-line"></i>
+        </button><br>
+        <p><span id="welcomeUser"></span></p>
+
+        <!-- Navigation -->
+        <nav id="navMenu">
+            <ul>
+                <li><a href="index.html"><i class="ri-home-4-line"></i> Home</a></li>
+                <li><a href="watching.html"><i class="ri-eye-line"></i> Watching</a></li>
+                <li><a href="watched.html"><i class="ri-check-line"></i> Watched</a></li>
+                <li><a href="favourites.html"><i class="ri-heart-line"></i> Favourites</a></li>
+                <li><a href="quiz.html"><i class="ri-question-line"></i> Quiz</a></li>
+                <li><button id="logoutBtn"><i class="ri-logout-box-line"></i> Logout</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <div class="quiz-container">
+
+            <h2>How well do you know your kdramas?</h2><br>
+
+            <form id="quizForm">
+
+                <p id="question" class="question"></p>
+
+                <div id="answers" class="answers"></div>
+
+                <button type="submit">Submit Answer</button>
+
+            </form>
+
+            <p id="score" style="margin-top:1rem;"></p>
+
+            <button id="tryAgainBtn" style="display:none; margin-top:1rem;">Try Again</button>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer_content">
+            <div class="footer_about">
+                <h3>My KdramaLog</h3>
+                <p>Your go-to site for all things Korean dramas – watchlist, trending shows, and more.</p>
+            </div>
+            <div class="footer_links">
+
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Watching</a></li>
+                    <li><a href="#">Watched</a></li>
+                    <li><a href="#">Trending Today</a></li>
+                    <li><a href="#">Favourites</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer_bottom">
+            <p>&copy; 2025 Kdramas. All rights reserved.</p>
+        </div>
+
+    </footer>
+
+
+
+    <script>
+
+        let currentUser = localStorage.getItem("currentUser");
+
+        // If no user, redirect to login page
+        if (!currentUser) {
+            window.location.href = "login.html";
+            currentUser = "Guest";
+        }
+
+        const hamburgerBtn = document.getElementById("hamburgerBtn");
+        const navMenu = document.getElementById("navMenu");
+
+        hamburgerBtn.addEventListener("click", () => {
+            navMenu.classList.toggle("active");
+        });
+
+        // Show welcome message
+        document.getElementById("welcomeUser").textContent = `Welcome, ${currentUser}`;
+
+        document.getElementById("logoutBtn").addEventListener("click", () => {
+            localStorage.removeItem("currentUser");
+            alert("You have been logged out!");
+
+            window.location.href = "login.html";
+        });
+
+        // Full 50-question bank 
+
+        let quizBank = [
+
+            { question: "Which Kdrama features a lawyer who’s also in the mafia?", answers: ["Vincenzo", "Flower of Evil", "Crash Landing On You"], correct: ["Vincenzo"] },
+
+            { question: "Which drama is set in North Korea?", answers: ["Scarlet Heart Ryeo", "Crash Landing On You", "Melo Movie"], correct: ["Crash Landing On You"] },
+
+            { question: "Which drama is a rom-com about a fake wedding?", answers: ["Wedding Impossible", "Law and The City", "Melo Movie"], correct: ["Wedding Impossible"] },
+
+            { question: "Which Kdrama features a time-traveling chef?", answers: ["Rooftop Prince", "Mr. Queen", "Kingdom"], correct: ["Mr. Queen"] },
+
+            { question: "Which drama is about a genius profiler solving murders?", answers: ["Signal", "Flower of Evil", "Vincenzo"], correct: ["Signal"] },
+
+            { question: "Which drama is based on a webtoon about high school with superpowers?", answers: ["Moving", "Extraordinary You", "Sky Castle"], correct: ["Moving"] },
+
+            { question: "Which drama tells a love story between a chaebol and a girl in disguise?", answers: ["My Girlfriend is a Gumiho", "My Love From the Star", "Coffee Prince"], correct: ["Coffee Prince"] },
+
+            { question: "Which drama is a historical epic about a love triangle in the Goryeo era?", answers: ["Moon Lovers: Scarlet Heart Ryeo", "Kingdom", "Faith"], correct: ["Moon Lovers: Scarlet Heart Ryeo"] },
+
+            { question: "Which drama features zombies in the Joseon era?", answers: ["Kingdom", "Mr. Queen", "Mr. Sunshine"], correct: ["Kingdom"] },
+
+            { question: "Which drama is a medical thriller with a vampire doctor?", answers: ["Doctor John", "Doctors", "Blood"], correct: ["Blood"] },
+
+            { question: "Which drama features a chef and a tyrant king?", answers: ["Bon Appetit Your Majesty", "Rooftop Prince", "Kingdom"], correct: ["Bon Appetit Your Majesty"] },
+
+            { question: "Which drama centers on a woman waking up in a man's body?", answers: ["My Girlfriend Is The Man", "She Was Pretty", "Extraordinary You"], correct: ["My Girlfriend Is The Man"] },
+
+            { question: "Which drama features a genius law professor solving cases?", answers: ["Vincenzo", "Law School", "Stranger"], correct: ["Law School"] },
+
+            { question: "Which drama revolves around a murder mystery in a hospital?", answers: ["Hospital Playlist", "Doctor Prisoner", "Doctor John"], correct: ["Doctor Prisoner"] },
+
+            { question: "Which drama features a king ruling with justice in The Kingdom of Corea?", answers: ["The King: Eternal Monarch", "Mr. Queen", "Kingdom"], correct: ["The King: Eternal Monarch"] },
+
+            { question: "Which drama features a princess disguising herself?", answers: ["Love in the Moonlight", "Queen In Hyun's Man", "Moon Lovers"], correct: ["Love in the Moonlight"] },
+
+            { question: "Which drama involves a lawyer fighting corrupt chaebols?", answers: ["Vincenzo", "Law School", "Flower of Evil"], correct: ["Vincenzo"] },
+
+            { question: "Which drama features a king who can pass parrallel universes?", answers: ["Kingdom", "The King: Eternal Monarch", "Mr. Sunshine"], correct: ["The King: Eternal Monarch"] },
+
+            { question: "Which drama features a romance between two high school students in a webtoon?", answers: ["Extraordinary You", "Love Alarm", "My ID is Gangnam Beauty"], correct: ["Extraordinary You"] },
+
+            { question: "Which drama is about a mysterious nobleman from the Joseon era?", answers: ["Mr. Queen", "Rooftop Prince", "Queen In Hyun's Man"], correct: ["Rooftop Prince"] },
+
+            { question: "Which drama is a story of love and revenge among chaebols?", answers: ["Penthouse", "Vincenzo", "Sky Castle"], correct: ["Penthouse"] },
+
+            { question: "Which drama features a chef trying to save his restaurant?", answers: ["Melo Movie", "Bon Appetit Your Majesty", "Let's Eat"], correct: ["Let's Eat"] },
+
+            { question: "Which drama features a time-traveling king?", answers: ["Rooftop Prince", "Moon Lovers", "The King: Eternal Monarch"], correct: ["Rooftop Prince"] },
+
+            { question: "Which drama involves an angel and a mortal love story?", answers: ["Goblin", "My Love From the Star", "Angel's Last Mission"], correct: ["Angel's Last Mission"] },
+
+            { question: "Which drama features a female lawyer challenging injustice?", answers: ["Law School", "Hyena", "Vincenzo"], correct: ["Hyena"] },
+
+            { question: "Which drama is a historical mystery with political intrigue involving America?", answers: ["Mr. Sunshine", "Kingdom", "Moon Lovers"], correct: ["Mr. Sunshine"] },
+
+            { question: "Which drama features a genius profiler solving cold cases?", answers: ["Signal", "Voice", "Stranger"], correct: ["Signal"] },
+
+            { question: "Which drama is about a famous actress falling in love with an alien?", answers: ["Goblin", "My Love From the Star", "Hotel Del Luna"], correct: ["My Love From the Star"] },
+
+            { question: "Which drama is a rom-com with mistaken identity?", answers: ["She Was Pretty", "Melo Movie", "Extraordinary You"], correct: ["She Was Pretty"] },
+
+            { question: "Which drama revolves around family secrets in a high-rise building?", answers: ["Penthouse", "Sky Castle", "Melo Movie"], correct: ["Penthouse"] },
+
+            { question: "Which drama features a chaebol heiress and a commoner romance?", answers: ["My ID is Gangnam Beauty", "Extraordinary You", "Queen of Tears"], correct: ["Queen of Tears"] },
+
+            { question: "Which drama is a historical tale about an emperor and a queen who is actually a man?", answers: ["Mr. Queen", "Moon Lovers", "Kingdom"], correct: ["Mr. Queen"] },
+
+            { question: "Which drama is about a mafia lawyer?", answers: ["Vincenzo", "Law School", "Stranger"], correct: ["Vincenzo"] },
+
+            { question: "Which drama features a genius lawyer with autism?", answers: ["Extraordinary You", "Love Alarm", "Extraordinary Attorney Woo"], correct: ["Extraordinary Attorney Woo"] },
+
+            { question: "Which drama revolves around revenge for a tragic death?", answers: ["Flower of Evil", "Vincenzo", "Law School"], correct: ["Flower of Evil"] },
+
+            { question: "Which drama is about a supernatural goblin protecting a human?", answers: ["Goblin", "Hotel Del Luna", "My Love From the Star"], correct: ["Goblin"] },
+
+            { question: "Which drama is about a woman with heightened hearing solving crimes?", answers: ["Signal", "Voice", "Stranger"], correct: ["Voice"] },
+
+            { question: "Which drama is about a secret agent fighting for justice?", answers: ["Vincenzo", "Healer", "Undercover Highschool"], correct: ["Undercover Highschool"] },
+
+            { question: "In which drama does a rich high school student fall for a girl from a poor family?", answers: ["Boys Over Flowers", "Playful Kiss", "Healer"], correct: ["Boys Over Flowers"] },
+
+            { question: "This drama features a playful romance between a top student and a clumsy girl.", answers: ["Playful Kiss", "Let's Fight Ghost", "Coffee Prince"], correct: ["Playful Kiss"] },
+
+            { question: "In which drama does a university student and a ghost team up to solve mysteries?", answers: ["Let's Fight Ghost", "Ghost Doctor", "Healer"], correct: ["Let's Fight Ghost"] },
+
+            { question: "Who disguises themselves as a girl in 'He's Beautiful'?", answers: ["Hwang Tae-kyung", "Hwang Geu-ru", "Hwang Tae-joon"], correct: ["Hwang Geu-ru"] },
+
+            { question: "In 'Vincenzo', what is the main character’s profession?", answers: ["Lawyer", "Mafia consigliere", "Chef"], correct: ["Mafia consigliere"] },
+
+            { question: "This drama addresses mental health through the story of a children's book writer.", answers: ["It's Okay To Not Be Okay", "Flower Of Evil", "Law School"], correct: ["It's Okay To Not Be Okay"] },
+
+            { question: "Which drama is a thriller about a serial killer hiding his identity?", answers: ["Flower Of Evil", "Law And The City", "Secret Garden"], correct: ["Flower Of Evil"] },
+
+            { question: "A love story set in the Goryeo era involving a time-traveling woman occurs in?", answers: ["Scarlett Heart Ryeo", "Mr. Queen", "Moon Lovers"], correct: ["Scarlett Heart Ryeo"] },
+
+            { question: "Which drama revolves around a high school student navigating social pressures and love?", answers: ["True Beauty", "Extraordinary You", "Love Alarm"], correct: ["True Beauty"] },
+
+            { question: "In this drama, a secret agent seeks revenge and justice.", answers: ["City Hunter", "The K2", "Healer"], correct: ["City Hunter"] },
+
+            { question: "This drama involves a love story between a genius and an heiress from another world.", answers: ["Legend Of The Blue Sea", "Goblin", "The King: Eternal Monarch"], correct: ["Legend Of The Blue Sea"] },
+
+            { question: "Which drama depicts wealthy heirs at an elite high school?", answers: ["The Heirs", "Sky Castle", "Penthouse 1"], correct: ["The Heirs"] },
+
+            { question: "Parallel universes, a king, and romance are central to which drama?", answers: ["The King Eternal Monarch", "Mr. Queen", "Rooftop Prince"], correct: ["The King Eternal Monarch"] },
+
+            { question: "Two sisters struggle with family secrets in a modern adaptation of a classic novel.", answers: ["Little Women", "Queen Of Tears", "Penthouse 2: War In Life"], correct: ["Little Women"] },
+
+            { question: "This drama focuses on an aspiring musician and a rising star in the entertainment industry.", answers: ["Gank Your Heart", "Shooting Stars", "Dream High"], correct: ["Gank Your Heart"] },
+
+            { question: "In 'Ghost Doctor', who merges with another person's body to survive?", answers: ["Cheon Soo-Ho", "Han Moo-Gang", "Vincenzo"], correct: ["Cheon Soo-Ho"] },
+
+            { question: "A detective fights corruption and solves crimes with unusual methods in which drama?", answers: ["Bad And Crazy", "Lawless Lawyer", "The K2"], correct: ["Bad And Crazy"] },
+
+            { question: "A man with extraordinary abilities becomes known as 'The Man Called God' in which series?", answers: ["The Man Called God", "Healer", "Vincenzo"], correct: ["The Man Called God"] },
+
+            { question: "In which drama does a woman survive a plane crash and find love in a foreign country?", answers: ["Crash Landing On You", "Personal Taste", "Secret Garden"], correct: ["Crash Landing On You"] },
+
+            { question: "A man with a secret identity falls in love with a woman who loves home decor in?", answers: ["Personal Taste", "Secret Garden", "Romantic Doctor Kim 1"], correct: ["Personal Taste"] },
+
+            { question: "In 'Secret Garden', what is the magical element that occurs between the leads?", answers: ["Body swap", "Time travel", "Ghost possession"], correct: ["Body swap"] },
+
+            { question: "This drama features a team of supernatural hunters investigating mysterious deaths.", answers: ["Uncanny Counter 1", "All Of Us Are Dead 1", "Vagabond"], correct: ["Uncanny Counter 1"] },
+
+            { question: "Which drama continues the story of supernatural hunters dealing with evil spirits?", answers: ["Uncanny Counter", "Lovers of The Red Sky", "Healer"], correct: ["Uncanny Counter"] },
+
+            { question: "A workplace romance set around corporate scheming is depicted in?", answers: ["Business Proposal", "Romantic Doctor Kim 1", "What's Wrong With Secretary Kim"], correct: ["Business Proposal"] },
+
+            { question: "In 'All Of Us Are Dead 1', students must survive a zombie outbreak where?", answers: ["High school", "University campus", "Military base"], correct: ["High school"] },
+
+            { question: "Which survival drama continues the students’ fight against zombies?", answers: ["Squid Game 1", "All Of Us Are Dead", "Squid Game 2"], correct: ["All Of Us Are Dead"] },
+
+            { question: "The deadly games are played in which drama?", answers: ["Squid Game", "The 8", "All of the above"], correct: ["All of the above"] },
+
+            { question: "This drama follows the final stages of high-stakes competition among participants.", answers: ["Squid Game 3", "Squid Game 2", "Money Heist Korea 1"], correct: ["Squid Game 3"] },
+
+            { question: "Korean remake of a famous Spanish heist series is called?", answers: ["Money Heist Korea", "Bella Ciao", "Narco Saints"], correct: ["Money Heist Korea"] },
+
+            { question: "Which drama centers around a detective and a regular guy chasing dangerous criminals in Suriname?", answers: ["Narco Saints", "Vincenzo", "Law And The City"], correct: ["Narco Saints"] },
+
+            { question: "A romantic comedy set in the entertainment industry with a popular actor occurs in?", answers: ["Shooting Stars", "Gank Your Heart", "Romantic Doctor Kim"], correct: ["Shooting Stars"] },
+
+            { question: "This drama follows a genius surgeon dealing with intense hospital cases.", answers: ["Romantic Doctor Kim", "Doctors", "Doctor John"], correct: ["Romantic Doctor Kim"] },
+
+            { question: "In 'Angel's Last Mission: Love', who does the angel fall for?", answers: ["A ballerina", "A princess", "A doctor"], correct: ["A ballerina"] },
+
+            { question: "A genius doctor who doesn't feel pain is in?", answers: ["Doctor John", "The Doctors", "Romantic Doctor Kim 1"], correct: ["Doctor John"] },
+
+            { question: "This drama features a woman with super strength protecting her loved ones.", answers: ["Strong Woman Do Bong Soon", "What's Wrong With Secretary Kim", "Healer"], correct: ["Strong Woman Do Bong Soon"] },
+
+            { question: "A romantic office comedy about an efficient secretary and her boss is?", answers: ["What's Wrong With Secretary Kim", "Business Proposal", "Secret Garden"], correct: ["What's Wrong With Secretary Kim"] },
+
+            { question: "A story of a chef, revenge, and love at a café occurs in?", answers: ["Cafe Minandam", "Let's Eat", "Bon Appetit Your Majesty"], correct: ["Cafe Minandam"] },
+
+        ];
+
+
+
+        // Shuffle function 
+
+        function shuffle(array) {
+
+            for (let i = array.length - 1; i > 0; i--) {
+
+                const j = Math.floor(Math.random() * (i + 1));
+
+                [array[i], array[j]] = [array[j], array[i]];
+
+            }
+
+        }
+
+
+
+        // Pick up to 10 random questions from the bank 
+
+        function getQuizBatch() {
+
+            const copy = [...quizBank];
+
+            shuffle(copy);
+
+            return copy.slice(0, 10); // max 10 questions 
+
+        }
+
+
+
+        // Initialize batch 
+
+        let quiz = getQuizBatch();
+
+        let currentIndex = 0;
+
+        let score = 0;
+
+
+
+        const questionEl = document.getElementById("question");
+
+        const answersEl = document.getElementById("answers");
+
+        const quizForm = document.getElementById("quizForm");
+
+        const scoreEl = document.getElementById("score");
+
+        const tryAgainBtn = document.getElementById("tryAgainBtn");
+
+
+
+        function loadQuestion() {
+
+            const q = quiz[currentIndex];
+
+            questionEl.textContent = q.question;
+
+            answersEl.innerHTML = "";
+
+            q.answers.forEach(ans => {
+
+                const label = document.createElement("label");
+
+                label.innerHTML = ` 
+
+        <input type="radio" name="answer" value="${ans}"> ${ans} 
+
+    `;
+
+                answersEl.appendChild(label);
+
+            });
+
+        }
+
+
+
+        // Submit logic 
+
+        quizForm.addEventListener("submit", function (e) {
+
+            e.preventDefault();
+
+            const selected = Array.from(document.querySelectorAll('input[name="answer"]:checked')).map(i => i.value);
+
+            const correct = quiz[currentIndex].correct;
+
+
+
+            if (selected.length === 0) return alert("Please select at least one answer");
+
+
+
+            if (selected.length === correct.length && selected.every(v => correct.includes(v))) {
+
+                score++;
+
+            }
+
+
+
+            currentIndex++;
+
+            if (currentIndex < quiz.length) {
+
+                loadQuestion();
+
+            } else {
+
+                questionEl.textContent = "Quiz Completed 🎉";
+
+                answersEl.innerHTML = "";
+
+                quizForm.querySelector("button").style.display = "none";
+
+                scoreEl.textContent = `Your score: ${score} / ${quiz.length}`;
+
+                tryAgainBtn.style.display = "block";
+
+            }
+
+        });
+
+
+
+        // Try Again button 
+
+        tryAgainBtn.addEventListener("click", () => {
+
+            score = 0;
+
+            currentIndex = 0;
+
+            quiz = getQuizBatch(); // get a new batch 
+
+            loadQuestion();
+
+            quizForm.querySelector("button").style.display = "inline-block";
+
+            scoreEl.textContent = "";
+
+            tryAgainBtn.style.display = "none";
+
+        });
+
+
+
+        // Start first quiz 
+
+        loadQuestion();
+
+    </script>
+
+    <script src="script.js"></script>
+
+</body>
+
+
+
+</html>

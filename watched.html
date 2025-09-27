@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Watched Dramas</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <a href="#">MyKDramaLog</a>
+
+    <!-- Hamburger Icon -->
+    <button class="hamburger" id="hamburgerBtn">
+      <i class="ri-menu-line"></i>
+    </button><br>
+    <p><span id="welcomeUser"></span></p>
+
+    <!-- Navigation -->
+    <nav id="navMenu">
+      <ul>
+        <li><a href="index.html"><i class="ri-home-4-line"></i> Home</a></li>
+        <li><a href="watching.html"><i class="ri-eye-line"></i> Watching</a></li>
+        <li><a href="watched.html"><i class="ri-check-line"></i> Watched</a></li>
+        <li><a href="favourites.html"><i class="ri-heart-line"></i> Favourites</a></li>
+        <li><a href="quiz.html"><i class="ri-question-line"></i> Quiz</a></li>
+        <li><button id="logoutBtn"><i class="ri-logout-box-line"></i> Logout</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main">
+    <h2 class="section_title">Watched Dramas (<span id="watched-count">0</span>)</h2>
+    <div id="watched-list" class="drama_container"></div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer_content">
+      <div class="footer_about">
+        <h3>My KdramaLog</h3>
+        <p>Your go-to site for all things Korean dramas – watchlist, trending shows, and more.</p>
+      </div>
+      <div class="footer_links">
+
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#">Watching</a></li>
+          <li><a href="#">Watched</a></li>
+          <li><a href="#">Trending Today</a></li>
+          <li><a href="#">Favourites</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer_bottom">
+      <p>&copy; 2025 Kdramas. All rights reserved.</p>
+    </div>
+
+  </footer>
+
+  <script>
+
+    let currentUser = localStorage.getItem("currentUser");
+
+    // If no user, redirect to login page
+    if (!currentUser) {
+      window.location.href = "login.html";
+      currentUser = "Guest";
+    }
+
+    const hamburgerBtn = document.getElementById("hamburgerBtn");
+    const navMenu = document.getElementById("navMenu");
+
+    hamburgerBtn.addEventListener("click", () => {
+      navMenu.classList.toggle("active");
+    });
+
+    // Show welcome message
+    document.getElementById("welcomeUser").textContent = `Welcome, ${currentUser}`;
+
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.removeItem("currentUser");
+      alert("You have been logged out!");
+
+      window.location.href = "login.html";
+    });
+
+    const watchedList = document.getElementById('watched-list');
+    const watchedCount = document.getElementById('watched-count');
+
+    function renderWatched() {
+      const watched = JSON.parse(localStorage.getItem('watched')) || [];
+      watchedList.innerHTML = '';
+      watched.forEach((drama, index) => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <div class="card_inner">
+            <div class="card_front">
+              <img src="${drama.image}" alt="${drama.name}">
+              <div class="card_name">${drama.name}</div>
+            </div>
+            <div class="card_back">
+              <h4>${drama.name}</h4>
+              <span class="description">${drama.description}</span>
+              <a href="${drama.link}" target="_blank" class="view_more">View More</a>
+              <button onclick="deleteDrama(${index})">Delete</button>
+            </div>
+          </div>`;
+        watchedList.appendChild(card);
+      });
+      watchedCount.textContent = watched.length;
+    }
+
+    function deleteDrama(index) {
+      const watched = JSON.parse(localStorage.getItem('watched')) || [];
+      watched.splice(index, 1);
+      localStorage.setItem('watched', JSON.stringify(watched));
+      renderWatched();
+    }
+
+    renderWatched();
+  </script>
+</body>
+
+</html>

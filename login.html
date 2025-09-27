@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - MyKDramaLog</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css"> <!-- global site CSS -->
+  <style>
+    .login-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: var(--bg-color);
+      padding: 1rem;
+    }
+
+    .login-box {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 1rem;
+      width: 100%;
+      max-width: 350px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .login-box h2 {
+      margin-bottom: 1.5rem;
+      color: var(--text-color);
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 1px solid #444;
+      border-radius: 0.5rem;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-size: 1rem;
+    }
+
+    .login-box input:focus {
+      outline: none;
+      border-color: var(--button-bg);
+    }
+
+    .login-box button {
+      width: 100%;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 0.5rem;
+      background: var(--button-bg);
+      color: #fff;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .login-box button:hover {
+      background: var(--button-hover);
+    }
+
+    .toggle-link {
+      margin-top: 1rem;
+      display: block;
+      color: var(--button-bg);
+      font-weight: 500;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .toggle-link:hover {
+      color: var(--button-hover);
+    }
+  </style>
+</head>
+<body class="dark">
+
+<div class="login-container">
+  <div class="login-box">
+    <h2 id="formTitle">Login</h2>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button id="submitBtn">Login</button>
+    <span class="toggle-link" id="toggleForm">Don’t have an account? Register</span>
+  </div>
+</div>
+
+<script>
+  let isLogin = true;
+  const submitBtn = document.getElementById("submitBtn");
+  const toggleForm = document.getElementById("toggleForm");
+  const formTitle = document.getElementById("formTitle");
+
+  toggleForm.addEventListener("click", () => {
+    isLogin = !isLogin;
+    formTitle.textContent = isLogin ? "Login" : "Register";
+    submitBtn.textContent = isLogin ? "Login" : "Register";
+    toggleForm.textContent = isLogin 
+      ? "Don’t have an account? Register" 
+      : "Already have an account? Login";
+  });
+
+  submitBtn.addEventListener("click", () => {
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
+    if (!username || !password) {
+      alert("Please enter both username and password");
+      return;
+    }
+
+    let users = JSON.parse(localStorage.getItem("users") || "{}");
+
+    if (isLogin) {
+      if (!users[username] || users[username].password !== password) {
+        alert("Invalid username or password!");
+        return;
+      }
+      localStorage.setItem("currentUser", username);
+      window.location.href = "index.html"; // go to main site
+    } else {
+      if (users[username]) {
+        alert("Username already exists!");
+        return;
+      }
+      users[username] = { password, dramas: {} };
+      localStorage.setItem("users", JSON.stringify(users));
+      alert("Account created! You can now log in.");
+      isLogin = true;
+      formTitle.textContent = "Login";
+      submitBtn.textContent = "Login";
+      toggleForm.textContent = "Don’t have an account? Register";
+    }
+  });
+</script>
+
+</body>
+</html>

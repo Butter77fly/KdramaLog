@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drama Tracker</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <a href="#">MyKDramaLog</a>
+
+    <!-- Hamburger Icon -->
+    <button class="hamburger" id="hamburgerBtn">
+      <i class="ri-menu-line"></i>
+    </button><br>
+    <p><span id="welcomeUser"></span></p>
+
+    <!-- Navigation -->
+    <nav id="navMenu">
+      <ul>
+        <li><a href="watching.html"><i class="ri-eye-line"></i> Watching</a></li>
+        <li><a href="watched.html"><i class="ri-check-line"></i> Watched</a></li>
+        <li><a href="favourites.html"><i class="ri-heart-line"></i> Favourites</a></li>
+        <li><a href="quiz.html"><i class="ri-question-line"></i> Quiz</a></li>
+        <li><button id="logoutBtn"><i class="ri-logout-box-line"></i> Logout</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero-carousel">
+    <h2 class="hero-title">🔥 Trending Now</h2>
+
+    <div class="carousel-container" id="carousel">
+      <div class="carousel-card" data-index="0">
+        <div class="card-inner">
+          <div class="front">
+            <img src="confidence-queen.jpg" alt="Confidence Queen">
+            <h3>Confidence Queen</h3>
+          </div>
+          <div class="back">
+            <p>A brilliant con artist leads a trio of daring heists....</p>
+            <a href="https://asianwiki.com/Confidence_Queen" target="_blank">More Info</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-card" data-index="1">
+        <div class="card-inner">
+          <div class="front">
+            <img src="baym.jpg" alt="Bon Appétit Your Majesty">
+            <h3>Bon Appétit Your Majesty</h3>
+          </div>
+          <div class="back">
+            <p>A royal chef from the future serves dishes that change the fate of a kingdom.....</p>
+            <a href="https://asianwiki.com/Bon_App%C3%A9tit,_Your_Majesty" target="_blank">More Info</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-card" data-index="2">
+        <div class="card-inner">
+          <div class="front">
+            <img src="my-youth.jpg" alt="My Youth">
+            <h3>My Youth</h3>
+          </div>
+          <div class="back">
+            <p>A bittersweet journey of friendship and growing up....</p>
+            <a href="https://asianwiki.com/My_Youth" target="_blank">More Info</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-card" data-index="3">
+        <div class="card-inner">
+          <div class="front">
+            <img src="ahm.jpg" alt="A Hundred Memories">
+            <h3>A Hundred Memories</h3>
+          </div>
+          <div class="back">
+            <p>Romance about a bus conductor, Go Young-rye, and her best friend, Seo Jong-hee, whose close bond is
+              tested by their shared first love....</p>
+            <a href="https://asianwiki.com/A_Hundred_Memories" target="_blank">More Info</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-card" data-index="4">
+        <div class="card-inner">
+          <div class="front">
+            <img src="queen-mantis.jpg" alt="Queen Mantis">
+            <h3>Queen Mantis</h3>
+          </div>
+          <div class="back">
+            <p>A serial killer with the nickname of the Mantis brutally murdered 5 men 20 years ago...</p>
+            <a href="https://asianwiki.com/Queen_Mantis" target="_blank">More Info</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-card" data-index="5">
+        <div class="card-inner">
+          <div class="front">
+            <img src="shin.jpg" alt="Shin's Project">
+            <h3>Shin's Project</h3>
+          </div>
+          <div class="back">
+            <p>Mr. Shin, an ordinary chicken shop owner who could settles everything with his silver tongue...</p>
+            <a href="https://asianwiki.com/Shin%27s_Project" target="_blank">More Info</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-card" data-index="6">
+        <div class="card-inner">
+          <div class="front">
+            <img src="tempest.jpg" alt="Tempest">
+            <h3>Tempest</h3>
+          </div>
+          <div class="back">
+            <p>A storm of secrets threatens a family’s bond and politics....</p>
+            <a href="https://asianwiki.com/Tempest_(Korean_Drama)" target="_blank">More Info</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-card" data-index="7">
+        <div class="card-inner">
+          <div class="front">
+            <img src="tothemoon.jpg" alt="To The Moon">
+            <h3>To The Moon</h3>
+          </div>
+          <div class="back">
+            <p>Three working-class women invest in cryptocurrency to.....</p>
+            <a href="https://asianwiki.com/To_The_Moon" target="_blank">More Info</a>
+          </div>
+        </div>
+      </div>
+
+    </div> <!-- /carousel-container -->
+  </section>
+
+  <main class="main">
+    <h2 class="section_title">Add a Drama</h2>
+    <form id="add-drama-form">
+      <input list="drama-suggestions" id="drama-input" placeholder="Type drama name..." required>
+      <datalist id="drama-suggestions"></datalist>
+
+      <select id="category" required>
+        <option value="">Choose category</option>
+        <option value="watched">Watched</option>
+        <option value="watching">Watching</option>
+        <option value="favourites">Favourites</option>
+      </select>
+
+      <div id="watching-extra" style="display:none;">
+        <label>Episodes Watched:
+          <input type="number" id="episodes-watched" min="0">
+        </label>
+        <label>Total Episodes:
+          <input type="number" id="total-episodes" min="1">
+        </label>
+      </div>
+
+      <button type="submit">Add</button>
+    </form>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer_content">
+      <div class="footer_about">
+        <h3>My KdramaLog</h3>
+        <p>Your go-to site for all things Korean dramas – watchlist, trending shows, and more.</p>
+      </div>
+      <div class="footer_links">
+
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#">Watching</a></li>
+          <li><a href="#">Watched</a></li>
+          <li><a href="#">Trending Today</a></li>
+          <li><a href="#">Favourites</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer_bottom">
+      <p>&copy; 2025 Kdramas. All rights reserved.</p>
+    </div>
+
+  </footer>
+
+  <script>
+
+    let currentUser = localStorage.getItem("currentUser");
+
+    // If no user, redirect to login page
+    if (!currentUser) {
+      window.location.href = "login.html";
+      currentUser = "Guest";
+    }
+
+    const hamburgerBtn = document.getElementById("hamburgerBtn");
+    const navMenu = document.getElementById("navMenu");
+
+    hamburgerBtn.addEventListener("click", () => {
+      navMenu.classList.toggle("active");
+    });
+
+    // Show welcome message
+    document.getElementById("welcomeUser").textContent = `Welcome, ${currentUser}`;
+
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.removeItem("currentUser");
+      alert("You have been logged out!");
+
+      window.location.href = "login.html";
+    });
+
+    const cards = document.querySelectorAll(".carousel-card");
+    let currentIndex = 0;
+
+    (function () {
+      const container = document.getElementById('carousel');
+      const cards = Array.from(container.querySelectorAll('.carousel-card'));
+      const total = cards.length;
+      if (!total) return;
+
+      // current index (center card)
+      let current = 0;
+      let autoTimer = null;
+      const spacing = 280; // horizontal spacing base, will be multiplied by scale
+      const maxShown = 5;  // how many cards around center to keep visible
+
+      // helper: convert i to signed offset relative to current, wrapped
+      function offsetFromCurrent(i) {
+        let offset = i - current;
+        // wrap
+        if (offset > total / 2) offset -= total;
+        if (offset < -total / 2) offset += total;
+        return offset;
+      }
+
+      function updatePositions() {
+        cards.forEach((card, i) => {
+          card.classList.remove('hidden');
+          card.classList.remove('center');
+          card.classList.remove('left');
+          card.classList.remove('right');
+
+          // reset flips when moving
+          card.classList.remove('flipped');
+
+          const offset = offsetFromCurrent(i);
+          const abs = Math.abs(offset);
+
+          // if too far from center hide
+          if (abs > Math.floor(maxShown / 2) + 1) {
+            card.classList.add('hidden');
+            card.style.transform = 'translate(-50%,-50%) scale(.6) translateZ(-500px)';
+            card.style.opacity = '0';
+            card.style.zIndex = 0;
+            return;
+          }
+
+          // compute transforms
+          // translation X depends on offset; translateZ pushed back with |offset|
+          const baseX = spacing * 0.65;     // base horizontal multiplier
+          const x = offset * baseX;
+          const z = -Math.abs(offset) * 120; // push back
+          const rotY = offset * -20;         // angle the side cards
+          const scale = Math.max(0.7, 1 - Math.abs(offset) * 0.12);
+          const opacity = offset === 0 ? 1 : 0.9 - Math.abs(offset) * 0.12;
+          const zIndex = 1000 - Math.abs(offset) * 10;
+
+          // set css transform (center at 50% left, 50% top)
+          card.style.transform = `translate(calc(-50% + ${x}px), -50%) translateZ(${z}px) rotateY(${rotY}deg) scale(${scale})`;
+          card.style.opacity = opacity;
+          card.style.zIndex = zIndex;
+
+          if (offset === 0) {
+            card.classList.add('center');
+          } else if (offset < 0) {
+            card.classList.add('left');
+          } else {
+            card.classList.add('right');
+          }
+        });
+      }
+
+      // click behavior:
+      // - if clicked card is center -> toggle flip
+      // - otherwise move clicked card to center
+      cards.forEach((card, i) => {
+        card.addEventListener('click', (ev) => {
+          ev.stopPropagation();
+          if (i === current) {
+            card.classList.toggle('flipped');
+          } else {
+            current = i;
+            updatePositions();
+            restartAuto();
+          }
+        });
+      });
+
+      // auto rotate
+      function next() {
+        current = (current + 1) % total;
+        updatePositions();
+      }
+      function startAuto() {
+        stopAuto();
+        autoTimer = setInterval(next, 4500);
+      }
+      function stopAuto() {
+        if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+      }
+      function restartAuto() {
+        stopAuto();
+        startAuto();
+      }
+
+      // close flips and center on outside click
+      document.addEventListener('click', () => {
+        // if any card is flipped, unflip it
+        cards.forEach(c => c.classList.remove('flipped'));
+      });
+
+      // initialize
+      updatePositions();
+      startAuto();
+
+      // adapt to resize (recalculate spacing optionally)
+      window.addEventListener('resize', () => {
+        updatePositions();
+      });
+    })();
+
+    // Drama Database
+    const dramaDatabase = {
+      "Vincenzo": {
+        image: "vincenzo.jpg",
+        description: "A mafia consigliere takes on corrupt elites in Korea.",
+        link: "https://asianwiki.com/Vincenzo_(Korean_Drama)"
+      },
+      "Confidence Queen": {
+        image: "cq.jpg",
+        description: "A brilliant con artist leads daring heists with style.",
+        link: "https://asianwiki.com/Confidence_Queen"
+      },
+      "Bon Appétit Your Majesty": {
+        image: "baym.jpg",
+        description: "A palace chef from the future wins hearts with royal flavors.",
+        link: "https://asianwiki.com/Bon_App%C3%A9tit,_Your_Majesty"
+      },
+      "My Youth": {
+        image: "my-youth.jpg",
+        description: "A bittersweet journey of friendship and growing up.",
+        link: "https://asianwiki.com/My_Youth"
+      },
+      "A Hundred Memories": {
+        image: "ahm1.jpg",
+        description: "Two bestfriends have their frienship tested by their shared first love.",
+        link: "https://asianwiki.com/A_Hundred_Memories"
+      },
+      "Queen Mantis": {
+        image: "queen-mantis.jpg",
+        description: "A serial killer with the nickname of the Mantis brutally murdered 5 men 20 years ago...",
+        link: "https://asianwiki.com/Queen_Mantis"
+      },
+      "Shin's Project": {
+        image: "shin.jpg",
+        description: "r. Shin, an ordinary chicken shop owner who could settles everything with his silver tongue...",
+        link: "https://asianwiki.com/Shin%27s_Project"
+      },
+      "Tempest": {
+        image: "tempest.jpg",
+        description: "Lives collide when a political storm shakes a nation.",
+        link: "https://asianwiki.com/Tempest_(Korean_Drama)"
+      },
+      "To the Moon": {
+        image: "moon.jpg",
+        description: "Three working-class women invest in cryptocurrency...",
+        link: "https://asianwiki.com/To_The_Moon"
+      },
+      "Crash Landing On You": {
+        image: "cloy.jpg",
+        description: "A chaebol heiress crash-lands in North Korea.",
+        link: "https://asianwiki.com/Crash_Landing_on_You"
+      },
+      "Extraordinary Attorney Woo": {
+        image: "woo.jpg",
+        description: "A brilliant lawyer with autism solves complex cases.",
+        link: "https://en.wikipedia.org/wiki/Extraordinary_Attorney_Woo"
+      },
+      "Mr. Queen": {
+        image: "mr.q.jpg",
+        description: "A modern chef wakes up in the Joseon era as a queen.",
+        link: "https://asianwiki.com/Mr._Queen"
+      },
+      "Penthouse": {
+        image: "penthouse.jpg",
+        description: "Wealth, revenge, and ambition collide in a luxury tower.",
+        link: "https://asianwiki.com/Penthouse_(Korean_Drama)"
+      },
+      "Goblin": {
+        image: "goblin.jpg",
+        description: "An immortal goblin seeks to end his cursed life.",
+        link: "https://asianwiki.com/Guardian:_The_Lonely_and_Great_God"
+      },
+      "Descendants of the Sun": {
+        image: "dots.jpg",
+        description: "A soldier and a doctor fall in love amidst war.",
+        link: "https://asianwiki.com/Descendants_of_the_Sun"
+      },
+      "My Love From the Star": {
+        image: "mlfts.jpg",
+        description: "An alien falls in love with a famous actress.",
+        link: "https://asianwiki.com/My_Love_From_the_Star"
+      },
+      "It's Okay to Not Be Okay": {
+        image: "oknby.jpg",
+        description: "A caregiver and a writer heal each other’s wounds.",
+        link: "https://asianwiki.com/It%27s_Okay_to_Not_Be_Okay"
+      },
+      "Healer": {
+        image: "healer.webp",
+        description: "A night courier entangles with a reporter and secrets.",
+        link: "https://asianwiki.com/Healer"
+      },
+      "While You Were Sleeping": {
+        image: "wyws.jpg",
+        description: "A woman who sees the future in dreams meets a prosecutor.",
+        link: "https://asianwiki.com/While_You_Were_Sleeping_(2017)"
+      },
+      "Itaewon Class": {
+        image: "itaewon.jpg",
+        description: "An ex-convict opens a bar to challenge a food empire.",
+        link: "https://asianwiki.com/Itaewon_Class"
+      },
+      "Strong Woman Do Bong Soon": {
+        image: "bongsoon.jpg",
+        description: "A woman with super strength protects the one she loves.",
+        link: "https://asianwiki.com/Strong_Girl_Bong-Soon"
+      },
+      "Legend of the Blue Sea": {
+        image: "lotbs.jpg",
+        description: "A mermaid falls for a genius scam artist.",
+        link: "https://asianwiki.com/The_Legend_of_the_Blue_Sea"
+      },
+      "Moon Lovers: Scarlet Heart Ryeo": {
+        image: "scarlet.jpg",
+        description: "A woman from the future is swept into Goryeo’s palace intrigues.",
+        link: "https://asianwiki.com/Moon_Lovers:_Scarlet_Heart_Ryeo"
+      },
+      "Hotel Del Luna": {
+        image: "hdl.jpg",
+        description: "A hotel for ghosts run by a cursed CEO.",
+        link: "https://asianwiki.com/Hotel_Del_Luna"
+      },
+      "Weightlifting Fairy Kim Bok Joo": {
+        image: "wlfg.jpg",
+        description: "A weightlifter finds love and friendship on campus.",
+        link: "https://asianwiki.com/Weightlifting_Fairy_Kim_Bok-Joo"
+      },
+      "Reply 1988": {
+        image: "reply1988.jpg",
+        description: "A nostalgic story of family and youth in the 80s.",
+        link: "https://asianwiki.com/Reply_1988"
+      },
+      "The Glory": {
+        image: "glory.jpg",
+        description: "A woman plots revenge against her school bullies.",
+        link: "https://asianwiki.com/The_Glory"
+      },
+      "All of Us Are Dead": {
+        image: "aouad.jpeg",
+        description: "Students fight for survival during a zombie outbreak.",
+        link: "https://asianwiki.com/All_of_Us_Are_Dead"
+      },
+      "Boys Over Flowers": {
+        image: "boff.jpg",
+        description: "A poor girl enters a rich high school and meets F4.",
+        link: "https://asianwiki.com/Boys_Over_Flowers_-_Korean_Drama"
+      },
+      "City Hunter": {
+        image: "cityhunter.jpg",
+        description: "A vigilante uncovers political corruption.",
+        link: "https://asianwiki.com/City_Hunter_(Korean_Drama)"
+      },
+      "Doctor Stranger": {
+        image: "drstranger.jpg",
+        description: "A genius doctor escapes North Korea.",
+        link: "https://asianwiki.com/Doctor_Stranger"
+      },
+      "Faith": {
+        image: "faith.jpg",
+        description: "A modern surgeon is taken to Goryeo.",
+        link: "https://asianwiki.com/Faith_(Korean_Drama)"
+      },
+      "Secret Garden": {
+        image: "secretgarden.jpg",
+        description: "A stuntwoman and a CEO switch bodies.",
+        link: "https://asianwiki.com/Secret_Garden_(Korean_Drama)"
+      },
+      "Kill Me, Heal Me": {
+        image: "kmhm.webp",
+        description: "A man with dissociative identity disorder seeks help.",
+        link: "https://asianwiki.com/Kill_Me,_Heal_Me"
+      },
+      "Remember: War of the Son": {
+        image: "remember.jpg",
+        description: "A lawyer with perfect memory fights for justice.",
+        link: "https://asianwiki.com/Remember:_War_of_Son"
+      },
+      "Pinocchio": {
+        image: "pinocchio.jpg",
+        description: "Reporters chase truth in a world of lies.",
+        link: "https://asianwiki.com/Pinocchio_(Korean_Drama)"
+      },
+      "Doctor Romantic": {
+        image: "docr.webp",
+        description: "A genius doctor teaches life and medicine.",
+        link: "https://asianwiki.com/Dr._Romantic"
+      },
+      "Doctors": {
+        image: "doctors.jpg",
+        description: "A troubled teen becomes a skilled doctor.",
+        link: "https://asianwiki.com/Doctors_(Korean_Drama)"
+      },
+      "Good Doctor": {
+        image: "gooddoc.avif",
+        description: "An autistic doctor proves his talent in pediatrics.",
+        link: "https://asianwiki.com/Good_Doctor"
+      },
+      "Hospital Playlist": {
+        image: "hospitalp.jpg",
+        description: "Five doctors balance work and friendship.",
+        link: "https://asianwiki.com/Hospital_Playlist"
+      },
+      "Start-Up": {
+        image: "startup.jpg",
+        description: "Young entrepreneurs chase dreams in Korea’s Silicon Valley.",
+        link: "https://asianwiki.com/Start-Up_(Korean_Drama)"
+      },
+      "Business Proposal": {
+        image: "bizproposal.jpg",
+        description: "A blind date turns into an office romance.",
+        link: "https://asianwiki.com/Business_Proposal"
+      },
+      "Love Alarm": {
+        image: "lovealarm.jpeg",
+        description: "An app alerts people when someone likes them.",
+        link: "https://asianwiki.com/Love_Alarm"
+      },
+      "Nevertheless": {
+        image: "nevertheless.jpeg",
+        description: "A cautious woman falls for a charming playboy.",
+        link: "https://asianwiki.com/Nevertheless_(Korean_Drama)"
+      },
+      "Sweet Home": {
+        image: "sweethome.jpg",
+        description: "Humans fight monsters in a cursed apartment.",
+        link: "https://asianwiki.com/Sweet_Home_(Netflix)"
+      },
+      "Happiness": {
+        image: "happiness.jpg",
+        description: "Residents are trapped in an apartment during an outbreak.",
+        link: "https://asianwiki.com/Happiness_(Korean_Drama)"
+      },
+      "The King: Eternal Monarch": {
+        image: "tkem.jpg",
+        description: "A king crosses parallel universes to save Korea.",
+        link: "https://asianwiki.com/The_King:_Eternal_Monarch"
+      },
+      "The Heirs": {
+        image: "heirs.jpg",
+        description: "Elite high school students navigate love and power.",
+        link: "https://asianwiki.com/The_Heirs_-_Korean_Drama"
+      },
+      "School 2013": {
+        image: "school2013.jpg",
+        description: "Two teachers guide troubled high schoolers.",
+        link: "https://asianwiki.com/School_2013"
+      },
+      "School 2017": {
+        image: "school2017.jpg",
+        description: "Students chase dreams amidst school corruption.",
+        link: "https://asianwiki.com/School_2017"
+      },
+      "Who Are You: School 2015": {
+        image: "school2015.jpg",
+        description: "Twin sisters switch lives in a mystery-filled school.",
+        link: "https://asianwiki.com/Who_Are_You:_School_2015"
+      },
+      "School 2021": {
+        image: "school2021.jpg",
+        description: "Students chase dreams amidst school corruption.",
+        link: "https://asianwiki.com/School_2021"
+      },
+      "Dream High": {
+        image: "dreamhigh.jpg",
+        description: "Aspiring idols chase fame and love.",
+        link: "https://asianwiki.com/Dream_High_-_Korean_Drama"
+      },
+      "Uncontrollably Fond": {
+        image: "uf.jpg",
+        description: "A terminally ill star reunites with his first love.",
+        link: "https://asianwiki.com/Uncontrollably_Fond"
+      },
+      "Master’s Sun": {
+        image: "mssun.jpg",
+        description: "A woman sees ghosts and a CEO protects her.",
+        link: "https://asianwiki.com/The_Master%27s_Sun"
+      },
+      "Oh My Venus": {
+        image: "venus.jpg",
+        description: "A trainer helps a lawyer transform her life.",
+        link: "https://asianwiki.com/Oh_My_Venus"
+      },
+      "Her Private Life": {
+        image: "hpl.jpg",
+        description: "A curator hides her fangirl secret life.",
+        link: "https://asianwiki.com/Her_Private_Life"
+      },
+      "Because This Is My First Life": {
+        image: "btimfl.jpg",
+        description: "Two strangers marry for convenience.",
+        link: "https://asianwiki.com/Because_This_Is_My_First_Life"
+      },
+      "Cheese in the Trap": {
+        image: "cheese.jpg",
+        description: "A college romance hides manipulation and secrets.",
+        link: "https://asianwiki.com/Cheese_in_the_Trap"
+      },
+      "W: Two Worlds": {
+        image: "w2w.jpg",
+        description: "A woman enters a webtoon world.",
+        link: "https://asianwiki.com/W:_Two_Worlds_Apart"
+      },
+      "Arthdal Chronicles": {
+        image: "arthdal.webp",
+        description: "Ancient tribes fight for power in a mythical land.",
+        link: "https://asianwiki.com/Arthdal_Chronicles"
+      },
+      "Alchemy of Souls": {
+        image: "aos.jpg",
+        description: "Mages battle destiny with soul-shifting magic.",
+        link: "https://asianwiki.com/Alchemy_of_Souls"
+      },
+      "Tale of the Nine Tailed": {
+        image: "tale9.jpg",
+        description: "A gumiho searches for his lost love.",
+        link: "https://asianwiki.com/Tale_of_the_Nine_Tailed"
+      },
+      "My Roommate Is a Gumiho": {
+        image: "gumiho.webp",
+        description: "A college student lives with a 999-year-old gumiho.",
+        link: "https://asianwiki.com/My_Roommate_Is_A_Gumiho"
+      },
+      "Bring It On, Ghost": {
+        image: "ghost.jpg",
+        description: "A student exorcist teams up with a ghost girl.",
+        link: "https://asianwiki.com/Bring_it_on,_Ghost"
+      },
+      "Doom at Your Service": {
+        image: "doom.jpeg",
+        description: "A woman meets Doom who can end the world.",
+        link: "https://asianwiki.com/Doom_at_Your_Service"
+      },
+      "Angel’s Last Mission: Love": {
+        image: "angel.jpg",
+        description: "An angel helps a blind ballerina find love.",
+        link: "https://asianwiki.com/Angel%27s_Last_Mission:_Love"
+      },
+      "Gu Family Book": {
+        image: "gufam.jpg",
+        description: "A half-gumiho seeks to become human.",
+        link: "https://asianwiki.com/Gu_Family_Book"
+      },
+      "Hwarang": {
+        image: "hwarang.webp",
+        description: "Elite young men form a legendary warrior group.",
+        link: "https://asianwiki.com/Hwarang"
+      },
+      "The Moon Embracing the Sun": {
+        image: "moon.jpg",
+        description: "A king mourns his lost queen amidst palace secrets.",
+        link: "https://asianwiki.com/The_Moon_Embracing_The_Sun"
+      },
+      "Jewel in the Palace": {
+        image: "jewel.jpg",
+        description: "A cook rises to royal physician in Joseon.",
+        link: "https://asianwiki.com/A_Jewel_in_the_Palace"
+      },
+      "Dong Yi": {
+        image: "dongyi.jpg",
+        description: "A water maid becomes a queen in Joseon.",
+        link: "https://asianwiki.com/Dong_Yi"
+      },
+      "Empress Ki": {
+        image: "empresski.jpg",
+        description: "A Korean woman becomes a Yuan dynasty empress.",
+        link: "https://asianwiki.com/Empress_Ki"
+      },
+      "Kingdom": {
+        image: "kingdom.jpg",
+        description: "A crown prince faces a zombie outbreak.",
+        link: "https://asianwiki.com/Kingdom_(Korean_Drama)"
+      },
+      "Signal": {
+        image: "signal.jpg",
+        description: "Detectives solve crimes across time using a radio.",
+        link: "https://asianwiki.com/Signal_(Korean_Drama)"
+      },
+      "Voice": {
+        image: "voice.jpg",
+        description: "Detectives chase criminals with voice profiling.",
+        link: "https://asianwiki.com/Voice_(Korean_Drama)"
+      },
+      "Tunnel": {
+        image: "tunnel.jpg",
+        description: "A 1980s detective time-travels to catch a killer.",
+        link: "https://asianwiki.com/Tunnel_(Korean_Drama)"
+      },
+      "Stranger": {
+        image: "stranger.jpg",
+        description: "A prosecutor without emotions fights corruption.",
+        link: "https://asianwiki.com/Stranger_(Secret_Forest)"
+      },
+      "Flower of Evil": {
+        image: "flower.jpg",
+        description: "A detective suspects her husband hides a dark secret.",
+        link: "https://asianwiki.com/Flower_of_Evil"
+      },
+      "My Mister": {
+        image: "mymister.jpg",
+        description: "A man and a young woman heal from life’s hardships.",
+        link: "https://asianwiki.com/My_Mister"
+      },
+      "Prison Playbook": {
+        image: "prison.jpg",
+        description: "A baseball star adapts to life behind bars.",
+        link: "https://asianwiki.com/Prison_Playbook"
+      },
+      "SKY Castle": {
+        image: "skycastle.jpg",
+        description: "Elite families fight for academic success.",
+        link: "https://asianwiki.com/SKY_Castle"
+      },
+      "The World of the Married": {
+        image: "twotm.jpg",
+        description: "A woman’s life unravels after betrayal.",
+        link: "https://asianwiki.com/The_World_of_the_Married"
+      },
+      "Racket Boys": {
+        image: "racket.jpg",
+        description: "Middle schoolers chase dreams in badminton.",
+        link: "https://asianwiki.com/Racket_Boys"
+      },
+      "Vagabond": {
+        image: "vagabond.jpg",
+        description: "A stuntman uncovers a massive conspiracy.",
+        link: "https://asianwiki.com/Vagabond_(Korean_Drama)"
+      },
+      "Big Mouth": {
+        image: "bigmouth.jpg",
+        description: "A lawyer is mistaken for a genius swindler.",
+        link: "https://asianwiki.com/Big_Mouth_(Korean_Drama)"
+      },
+      "Reborn Rich": {
+        image: "reborn.jpg",
+        description: "A betrayed man is reborn into a chaebol family.",
+        link: "https://asianwiki.com/Reborn_Rich"
+      },
+      "Under the Queen’s Umbrella": {
+        image: "queenumbrella.jpg",
+        description: "A queen protects her sons in a ruthless palace.",
+        link: "https://asianwiki.com/Under_The_Queen%27s_Umbrella"
+      },
+      "May I Help You": {
+        image: "mihy.jpg",
+        description: "A funeral director and a man with a strange gift help the dead.",
+        link: "https://asianwiki.com/May_I_Help_You"
+      },
+      "Tomorrow": {
+        image: "tomorrow.jpg",
+        description: "Grim reapers save lives instead of taking them.",
+        link: "https://asianwiki.com/Tomorrow_(Korean_Drama)"
+      },
+      "Inspector Koo": {
+        image: "koo.jpg",
+        description: "An ex-cop hunts down a clever serial killer.",
+        link: "https://asianwiki.com/Inspector_Koo"
+      },
+      "D.P.": {
+        image: "dp.jpg",
+        description: "Military police chase down army deserters.",
+        link: "https://asianwiki.com/D.P._(Netflix)"
+      },
+      "Thirty-Nine": {
+        image: "39.jpg",
+        description: "Three women navigate life and love at 39.",
+        link: "https://asianwiki.com/Thirty_Nine_(Korean_Drama)"
+      },
+      "Little Women": {
+        image: "lw.jpg",
+        description: "Three sisters face poverty, corruption, and betrayal.",
+        link: "https://asianwiki.com/Little_Women_(2022)"
+      },
+      "My Name": {
+        image: "myname.jpg",
+        description: "A woman infiltrates the police to avenge her father.",
+        link: "https://asianwiki.com/My_Name"
+      },
+      "Extracurricular": {
+        image: "extra.jpg",
+        description: "A model student runs an illegal business at night.",
+        link: "https://asianwiki.com/Extracurricular"
+      },
+      "The Light in Your Eyes": {
+        image: "light.jpg",
+        description: "A woman mysteriously ages overnight.",
+        link: "https://asianwiki.com/The_Light_in_Your_Eyes"
+      },
+      "Hyena": {
+        image: "hyena.jpg",
+        description: "Ruthless lawyers fight for power and survival.",
+        link: "https://asianwiki.com/Hyena_(2020)"
+      },
+      "Lovestruck in the City": {
+        image: "lic.jpg",
+        description: "Young people search for love in the city.",
+        link: "https://asianwiki.com/Lovestruck_in_the_City"
+      },
+      "My Liberation Notes": {
+        image: "mln.jpg",
+        description: "Three siblings yearn to escape their ordinary lives.",
+        link: "https://asianwiki.com/My_Liberation_Notes"
+      },
+      "When the Camellia Blooms": {
+        image: "camellia.jpg",
+        description: "A single mom finds love while facing prejudice.",
+        link: "https://asianwiki.com/When_the_Camellia_Blooms"
+      },
+      "Jirisan": {
+        image: "jirisan.jpg",
+        description: "Rangers protect lives on Korea’s highest mountain.",
+        link: "https://asianwiki.com/Jirisan"
+      },
+      "Chief of Staff": {
+        image: "cos.jpg",
+        description: "Political aides wield power behind the scenes.",
+        link: "https://asianwiki.com/Chief_of_Staff_(Korean_Drama)"
+      },
+      "Designated Survivor: 60 Days": {
+        image: "ds60.webp",
+        description: "An unassuming minister becomes acting president.",
+        link: "https://asianwiki.com/Designated_Survivor:_60_Days"
+      },
+      "Law School": {
+        image: "lawschool.jpg",
+        description: "Law students investigate a professor’s murder.",
+        link: "https://asianwiki.com/Law_School_(Korean_Drama)"
+      },
+      "Live": {
+        image: "live.jpg",
+        description: "Police officers struggle with duty and personal lives.",
+        link: "https://asianwiki.com/Live_(Korean_Drama)"
+      },
+      "Life on Mars": {
+        image: "lom.jpg",
+        description: "A detective wakes up in the 1980s after an accident.",
+        link: "https://asianwiki.com/Life_on_Mars_(Korean_Drama)"
+      },
+      "Bad Prosecutor": {
+        image: "badpros.png",
+        description: "A rogue prosecutor fights injustice his own way.",
+        link: "https://asianwiki.com/Bad_Prosecutor"
+      },
+      "Justice": {
+        image: "justice.jpg",
+        description: "A lawyer makes a dangerous deal for revenge.",
+        link: "https://asianwiki.com/Justice_(Korean_Drama)"
+      },
+      "Watcher": {
+        image: "watcher.jpg",
+        description: "Three people uncover police corruption.",
+        link: "https://asianwiki.com/Watcher_(Korean_Drama)"
+      },
+      "Times": {
+        image: "times.jpg",
+        description: "Reporters from different years connect via phone.",
+        link: "https://asianwiki.com/Times_(Korean_Drama)"
+      },
+      "The Veil": {
+        image: "veil.jpg",
+        description: "An elite NIS agent uncovers a conspiracy.",
+        link: "https://asianwiki.com/The_Veil"
+      },
+      "Beyond Evil": {
+        image: "be.jpg",
+        description: "Two detectives hunt a serial killer in a small town.",
+        link: "https://asianwiki.com/Beyond_Evil"
+      },
+      "Bad Guys": {
+        image: "badguys.jpg",
+        description: "Detectives use criminals to catch criminals.",
+        link: "https://asianwiki.com/Bad_Guys_(Korean_Drama)"
+      },
+      "Save Me": {
+        image: "saveme.jpg",
+        description: "A woman trapped in a cult seeks rescue.",
+        link: "https://asianwiki.com/Save_Me"
+      },
+      "Mad Dog": {
+        image: "maddog.jpg",
+        description: "Investigators expose insurance fraud schemes.",
+        link: "https://asianwiki.com/Mad_Dog"
+      },
+      "The Smile Has Left Your Eyes": {
+        image: "smile.jpg",
+        description: "A mysterious man entangles with a detective’s sister.",
+        link: "https://asianwiki.com/Hundred_Million_Stars_From_the_Sky_(Korean_Drama)"
+      },
+      "The Devil Judge": {
+        image: "deviljudge.jpg",
+        description: "A judge turns trials into reality TV shows.",
+        link: "https://asianwiki.com/The_Devil_Judge"
+      },
+      "Doctor John": {
+        image: "docjohn.jpg",
+        description: "A genius anesthesiologist battles pain and prejudice.",
+        link: "https://asianwiki.com/Doctor_John"
+      },
+      "Temperature of Love": {
+        image: "tol.jpg",
+        description: "A chef and a writer face timing in love.",
+        link: "https://asianwiki.com/Temperature_of_Love"
+      },
+      "Fated to Love You": {
+        image: "fated.jpg",
+        description: "A one-night stand leads to an unexpected marriage.",
+        link: "https://asianwiki.com/You_Are_My_Destiny_(Korean_Drama)"
+      },
+      "Shut Up Flower Boy Band": {
+        image: "flowerband.jpg",
+        description: "High school boys chase dreams with their rock band.",
+        link: "https://asianwiki.com/Shut_Up_Flower_Boy_Band"
+      },
+      "Playful Kiss": {
+        image: "pk.jpg",
+        description: "A clumsy girl falls for a genius student.",
+        link: "https://asianwiki.com/Mischievous_Kiss"
+      },
+      "To the Beautiful You": {
+        image: "tby.jpg",
+        description: "A girl disguises herself to join an all-boys school.",
+        link: "https://asianwiki.com/To_The_Beautiful_You"
+      },
+      "Sungkyunkwan Scandal": {
+        image: "skks.jpg",
+        description: "A woman disguises as a man to enter Sungkyunkwan.",
+        link: "https://asianwiki.com/Sungkyunkwan_Scandal"
+      },
+      "Queen Seondeok": {
+        image: "qs.jpg",
+        description: "The rise of Korea’s first female ruler.",
+        link: "https://asianwiki.com/The_Great_Queen_Seondeok"
+      },
+      "Tree With Deep Roots": {
+        image: "twdr.jpg",
+        description: "Scholars protect King Sejong’s Hangul project.",
+        link: "https://asianwiki.com/Tree_With_Deep_Roots"
+      },
+      "Six Flying Dragons": {
+        image: "6fd.jpg",
+        description: "Ambition and power shape the foundation of Joseon.",
+        link: "https://asianwiki.com/The_Roots_of_Throne"
+      },
+      "Mr. Sunshine": {
+        image: "mrsun.jpg",
+        description: "A Korean boy returns as a U.S. officer before annexation.",
+        link: "https://asianwiki.com/Mr._Sunshine"
+      },
+      "Chicago Typewriter": {
+        image: "ct.jpg",
+        description: "Past lives resurface through a mysterious typewriter.",
+        link: "https://asianwiki.com/Chicago_Typewriter"
+      },
+      "The Crowned Clown": {
+        image: "clown.jpg",
+        description: "A commoner replaces a king to save Joseon.",
+        link: "https://asianwiki.com/The_Crowned_Clown"
+      },
+      "Joseon Attorney": {
+        image: "ja.jpg",
+        description: "A vengeful lawyer fights injustice in Joseon.",
+        link: "https://asianwiki.com/Joseon_Attorney:_A_Morality"
+      },
+      "Love in the Moonlight": {
+        image: "moonlight.jpg",
+        description: "A crown prince falls for a disguised woman.",
+        link: "https://asianwiki.com/Love_in_the_Moonlight"
+      },
+      "Rookie Historian Goo Hae-Ryung": {
+        image: "rookie.jpg",
+        description: "A female historian challenges tradition in Joseon.",
+        link: "https://asianwiki.com/Rookie_Historian_Goo_Hae-Ryung"
+      },
+      "Moonshine": {
+        image: "moonshine.jpg",
+        description: "Forbidden love blooms during Joseon’s alcohol ban.",
+        link: "https://asianwiki.com/Moonshine_(Korean_Drama)"
+      },
+      "Our Blues": {
+        image: "blues.jpg",
+        description: "Stories of love and pain on Jeju Island.",
+        link: "https://asianwiki.com/Our_Blues"
+      },
+      "Hometown Cha-Cha-Cha": {
+        image: "hccc.jpg",
+        description: "A city dentist moves to a seaside village.",
+        link: "https://asianwiki.com/Hometown_Cha-Cha-Cha"
+      },
+      "Welcome to Waikiki": {
+        image: "waikiki.jpg",
+        description: "Friends run a failing guesthouse full of chaos.",
+        link: "https://asianwiki.com/Welcome_to_Waikiki"
+      },
+      "The Sound of Magic": {
+        image: "magic.jpg",
+        description: "A magician changes a struggling student’s life.",
+        link: "https://asianwiki.com/The_Sound_of_Magic"
+      },
+      "Idol: The Coup": {
+        image: "idol.jpg",
+        description: "An idol group fights for one last chance at success.",
+        link: "https://asianwiki.com/Idol:_The_Coup"
+      },
+      "At a Distance, Spring is Green": {
+        image: "adsig.jpg",
+        description: "College students navigate friendship and growing pains.",
+        link: "https://asianwiki.com/At_a_Distance,_Spring_is_Green"
+      },
+      "Dear M": {
+        image: "dearm.jpg",
+        description: "Students search for the author of a mysterious post.",
+        link: "https://asianwiki.com/Dear_M"
+      },
+      "Sisyphus: The Myth": {
+        image: "sisyphus.jpeg",
+        description: "A genius engineer meets a woman from the future.",
+        link: "https://asianwiki.com/Sisyphus:_The_Myth"
+      },
+      "Memories of the Alhambra": {
+        image: "alhambra.jpg",
+        description: "A CEO gets trapped in an AR game.",
+        link: "https://asianwiki.com/Memories_of_the_Alhambra"
+      },
+      "Kairos": {
+        image: "kairos.jpg",
+        description: "Two people communicate across time to save loved ones.",
+        link: "https://asianwiki.com/Kairos_(Korean_Drama)"
+      },
+      "Missing: The Other Side": {
+        image: "missing.jpeg",
+        description: "A village of missing souls seeks justice.",
+        link: "https://asianwiki.com/Missing:_The_Other_Side"
+      },
+      "What’s Wrong With Secretary Kim": {
+        image: "secKim.webp",
+        description: "A narcissistic boss and his secretary’s romance.",
+        link: "https://asianwiki.com/What%27s_Wrong_With_Secretary_Kim"
+      },
+      "She Was Pretty": {
+        image: "swp.jpg",
+        description: "An unattractive woman reunites with her first love.",
+        link: "https://asianwiki.com/She_Was_Pretty"
+      },
+      "The Beauty Inside": {
+        image: "tbi.jpg",
+        description: "A woman wakes up in a different body each month.",
+        link: "https://asianwiki.com/The_Beauty_Inside"
+      },
+      "Oh My Ghost": {
+        image: "ghostess.jpg",
+        description: "A timid chef is possessed by a flirty ghost.",
+        link: "https://asianwiki.com/Oh_My_Ghost"
+      },
+      "Kill It": {
+        image: "killit.jpg",
+        description: "A hitman lives a double life as a veterinarian.",
+        link: "https://asianwiki.com/Kill_It"
+      },
+      "Class of Lies": {
+        image: "col.jpg",
+        description: "A lawyer goes undercover as a teacher.",
+        link: "https://asianwiki.com/Class_of_Lies"
+      },
+      "Solomon’s Perjury": {
+        image: "sp.jpg",
+        description: "Students investigate a mysterious school death.",
+        link: "https://asianwiki.com/Solomon%27s_Perjury_(Korean_Drama)"
+      },
+      "Age of Youth": {
+        image: "aoy.jpg",
+        description: "Five college girls share a boarding house.",
+        link: "https://asianwiki.com/Hello,_My_Twenties!_(Korean_Drama)"
+      }
+    };
+
+    const dramaInput = document.getElementById("drama-input");
+    const suggestions = document.getElementById("drama-suggestions");
+    const categorySelect = document.getElementById("category");
+    const watchingExtra = document.getElementById("watching-extra");
+    const form = document.getElementById("add-drama-form");
+
+    // Populate suggestions from dramaDatabase
+    Object.keys(dramaDatabase).forEach(name => {
+      const option = document.createElement("option");
+      option.value = name;
+      suggestions.appendChild(option);
+    });
+
+    // Show/hide extra fields for Watching category
+    categorySelect.addEventListener("change", () => {
+      watchingExtra.style.display = categorySelect.value === "watching" ? "block" : "none";
+    });
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = dramaInput.value.trim();
+      const category = categorySelect.value;
+
+      if (!dramaDatabase[name]) {
+        alert("❌ Drama not found in database.");
+        return;
+      }
+
+      // Load existing lists
+      const watched = JSON.parse(localStorage.getItem("watched")) || [];
+      const watching = JSON.parse(localStorage.getItem("watching")) || [];
+      const favourites = JSON.parse(localStorage.getItem("favourites")) || [];
+
+      // Duplicate rules
+      // 1. Block duplicates inside the same category
+      const currentList = JSON.parse(localStorage.getItem(category)) || [];
+      if (currentList.some(d => d.name === name)) {
+        alert(`❌ "${name}" is already in your ${category} list.`);
+        return;
+      }
+
+      // 2. Block duplicates across categories (except favourites)
+      if (category !== "favourites") {
+        if (
+          (category !== "watched" && watched.some(d => d.name === name)) ||
+          (category !== "watching" && watching.some(d => d.name === name))
+        ) {
+          alert(`❌ "${name}" already exists in another category.`);
+          return;
+        }
+      }
+
+      // Create drama object
+      const drama = { ...dramaDatabase[name], name };
+
+      // Add extra episode info if category is watching
+      if (category === "watching") {
+        drama.episodesWatched = parseInt(document.getElementById("episodes-watched").value) || 0;
+        drama.totalEpisodes = parseInt(document.getElementById("total-episodes").value) || drama.totalEpisodes;
+      }
+
+      // Save to chosen category
+      currentList.push(drama);
+      localStorage.setItem(category, JSON.stringify(currentList));
+
+      form.reset();
+      watchingExtra.style.display = "none";
+      alert(`✅ "${name}" added to ${category}`);
+    });
+  </script>
+</body>
+
+</html>
