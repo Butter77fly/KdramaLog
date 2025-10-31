@@ -262,25 +262,21 @@ main .drama_container {
 
 @media (max-width: 768px) {
   .drama_container {
-    display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)); 
+    display: grid !important; /* force grid layout */
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
-    padding: 1rem;
-    overflow: visible !important;
+    overflow-x: hidden;
   }
 
   .card {
     width: 100% !important;
-    max-width: 100% !important;
-    height: auto !important;
-    margin: 0 auto;
+    height: auto;
   }
 
   .card_inner {
     height: 100%;
   }
 }
-
 
 .card {
   perspective: 1000px;
