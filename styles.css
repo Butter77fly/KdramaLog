@@ -251,40 +251,100 @@ form label { font-size:.9rem; }
 }
 
 /* ===== Cards ===== */
+/* ==== Default (Desktop) ==== */
 .drama_container {
-  display: grid !important;
+  display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 1.5rem;
+  justify-items: center;
   padding: 1.5rem 0;
-  width: 100%;
-  overflow: visible;
 }
 
+/* Card Base */
+.card {
+  background: #111;
+  border-radius: 1rem;
+  overflow: hidden;
+  width: 100%;
+  max-width: 230px;
+  height: 330px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+/* Card Inner Elements */
+.card img {
+  width: 100%;
+  height: 85%;
+  object-fit: cover;
+  display: block;
+}
+
+.card_name {
+  text-align: center;
+  padding: 0.5rem;
+  font-weight: bold;
+  color: #fff;
+  background: rgba(0,0,0,0.6);
+}
+
+/* ==== Mobile / Tablet (≤ 768px) ==== */
 @media (max-width: 768px) {
   .drama_container {
     display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important; /* exactly two per row */
-    gap: 1rem;
-    justify-items: center;
-    align-items: start;
-    width: 100%;
-    padding: 1rem;
-    overflow-x: hidden;
+    grid-template-columns: repeat(2, minmax(150px, 1fr)) !important;
+    gap: 1rem !important;
+    justify-items: center !important;
+    padding: 1rem 0;
   }
 
   .card {
-    width: 100% !important;
-    max-width: none !important;
-    height: auto !important;
+    width: 100%;
+    max-width: 170px !important;
+    height: 260px !important;
+    border-radius: 0.8rem;
+  }
+
+  .card img {
+    height: 80% !important;
+    object-fit: cover;
+  }
+
+  .card_name {
+    font-size: 0.85rem;
+    padding: 0.4rem;
+  }
+}
+
+/* ==== Extra Small (≤ 480px) ==== */
+@media (max-width: 480px) {
+  .drama_container {
+    grid-template-columns: 1fr !important;
+  }
+
+  .card {
+    max-width: 220px !important;
+    height: 300px !important;
+  }
+
+  .card img {
+    height: 82%;
+  }
+
+  .card_name {
+    font-size: 0.9rem;
   }
 }
 
 .card {
-  perspective: 1000px;
-  width: 100%;
-  max-width: 200px;
-  height: 280px;
-  margin: 0 auto;
+  perspective:1000px;
+  width:150px; height:225px;
+   min-width: auto;
+    width: 100%;
 }
 .card_inner {
   position:relative;
