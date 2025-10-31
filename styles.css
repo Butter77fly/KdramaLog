@@ -251,6 +251,14 @@ form label { font-size:.9rem; }
 }
 
 /* ===== Cards ===== */
+.drama_container {
+  gap: 1rem;
+  padding-bottom: 1rem;
+  scroll-behavior: smooth;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
 
 main .drama_container {
   display: grid;
