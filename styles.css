@@ -252,36 +252,27 @@ form label { font-size:.9rem; }
 
 /* ===== Cards ===== */
 .drama_container {
-  display: flex;
-  gap: 1rem;
-  padding-bottom: 1rem;
-  scroll-behavior: smooth;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-
-main .drama_container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1.5rem;
   padding: 1.5rem 0;
-  overflow: visible; /* disables scrollbars */
+  overflow: visible;
 }
 
 @media (max-width: 768px) {
   .drama_container {
-    display: grid;
     grid-template-columns: repeat(2, 1fr); /* two per row */
     gap: 1rem;
-    overflow-x: hidden; 
+    padding: 1rem;
+    overflow-x: hidden;
   }
 
   .card {
-    width: 100%; 
+    width: 100%;
     height: auto;
   }
 }
+
 
 .card {
   perspective: 1000px;
