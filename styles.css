@@ -251,30 +251,43 @@ form label { font-size:.9rem; }
 }
 
 /* ===== Cards ===== */
-.drama_container {
-  display: flex;
-  gap: 1rem;
-  padding-bottom: 1rem;
-  scroll-behavior: smooth;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
+
+main .drama_container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+  overflow: visible; /* disables scrollbars */
 }
 
 @media (max-width: 768px) {
   .drama_container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 per row */
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)); 
     gap: 1rem;
-    overflow-x: hidden; 
+    padding: 1rem;
+    overflow: visible !important;
+  }
+
+  .card {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    margin: 0 auto;
+  }
+
+  .card_inner {
+    height: 100%;
   }
 }
 
+
 .card {
-  perspective:1000px;
-  width:150px; height:225px;
-   min-width: auto;
-    width: 100%;
+  perspective: 1000px;
+  width: 100%;
+  max-width: 200px;
+  height: 280px;
+  margin: 0 auto;
 }
 .card_inner {
   position:relative;
