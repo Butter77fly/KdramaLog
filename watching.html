@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Watching Dramas</title>
-   <link rel="icon" type="image/png" href="kdramalog logo.webp">
+  <link rel="icon" type="image/png" href="kdramalog logo.webp">
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -114,7 +114,7 @@
               <input type="number" min="0" max="${drama.totalEpisodes}" 
                      value="${drama.episodesWatched}" 
                      onchange="updateProgress(${index}, this.value)">
-              <button onclick="deleteDrama(${index})">Delete</button>
+             <button onclick="moveToWatched(${index})">Move to Watched</button>
             </div>
           </div>`;
         watchingList.appendChild(card);
@@ -134,6 +134,30 @@
       watching[index].episodesWatched = parseInt(newValue) || 0;
       localStorage.setItem('watching', JSON.stringify(watching));
       renderWatching();
+    }
+
+    function moveToWatched(index) {
+      const watching = JSON.parse(localStorage.getItem('watching')) || [];
+      const watched = JSON.parse(localStorage.getItem('watched')) || [];
+
+      // Take the selected drama
+      const drama = watching[index];
+
+      // Avoid duplicates
+      const alreadyInWatched = watched.some(item => item.name === drama.name);
+      if (!alreadyInWatched) {
+        watched.push(drama);
+        localStorage.setItem('watched', JSON.stringify(watched));
+      }
+
+      // Remove it from watching list
+      watching.splice(index, 1);
+      localStorage.setItem('watching', JSON.stringify(watching));
+
+      // Re-render
+      renderWatching();
+
+      alert(`${drama.name} has been moved to "Watched"!`);
     }
 
     renderWatching();
