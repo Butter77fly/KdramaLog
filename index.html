@@ -105,12 +105,12 @@
       <div class="carousel-card" data-index="5">
         <div class="card-inner">
           <div class="front">
-            <img src="shin.jpg" alt="Shin's Project">
-            <h3>Shin's Project</h3>
+            <img src="moonriver.jpg" alt="Shin's Project">
+            <h3>Moon River</h3>
           </div>
           <div class="back">
-            <p>Mr. Shin, an ordinary chicken shop owner who could settles everything with his silver tongue...</p>
-            <a href="https://asianwiki.com/Shin%27s_Project" target="_blank">More Info</a>
+            <p>A crown prince mysteriously swaps bodies with an ordinary merchant...</p>
+            <a href="https://asianwiki.com/Moon_River_(Korean_Drama)" target="_blank">More Info</a>
           </div>
         </div>
       </div>
@@ -118,12 +118,12 @@
       <div class="carousel-card" data-index="6">
         <div class="card-inner">
           <div class="front">
-            <img src="tempest.jpg" alt="Tempest">
-            <h3>Tempest</h3>
+            <img src="x.jpg" alt="Tempest">
+            <h3>Dear X</h3>
           </div>
           <div class="back">
-            <p>A storm of secrets threatens a family’s bond and politics....</p>
-            <a href="https://asianwiki.com/Tempest_(Korean_Drama)" target="_blank">More Info</a>
+            <p>Baek A Jin grew up enduring domestic violence, forcing her to hide her emotions and survive by reading and manipulating others...</p>
+            <a href="https://asianwiki.com/Dear_X" target="_blank">More Info</a>
           </div>
         </div>
       </div>
@@ -335,6 +335,36 @@
       // initialize
       updatePositions();
       startAuto();
+
+      // 🖱️ Scroll wheel navigation
+  container.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    if (e.deltaY > 0 || e.deltaX > 0) {
+      current = (current + 1) % total; // scroll down → next
+    } else {
+      current = (current - 1 + total) % total; // scroll up → prev
+    }
+    updatePositions();
+    restartAuto();
+  }, { passive: false });
+
+  // 📱 Touch swipe navigation
+  let startX = 0;
+  let endX = 0;
+  container.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+  });
+
+  container.addEventListener('touchend', (e) => {
+    endX = e.changedTouches[0].clientX;
+    if (startX - endX > 50) {
+      current = (current + 1) % total; // swipe left → next
+    } else if (endX - startX > 50) {
+      current = (current - 1 + total) % total; // swipe right → prev
+    }
+    updatePositions();
+    restartAuto();
+  });
 
       // adapt to resize (recalculate spacing optionally)
       window.addEventListener('resize', () => {
