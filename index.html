@@ -33,7 +33,7 @@
     </nav>
   </header>
 
-  <section class="hero-carousel">
+  <section class="hero-carousel" id="trending">
     <h2 class="hero-title">🔥 Trending Now</h2>
 
     <div class="carousel-container" id="carousel">
@@ -181,10 +181,10 @@
 
         <h4>Quick Links</h4>
         <ul>
-          <li><a href="#">Watching</a></li>
-          <li><a href="#">Watched</a></li>
-          <li><a href="#">Trending Today</a></li>
-          <li><a href="#">Favourites</a></li>
+          <li><a href="watching.html">Watching</a></li>
+          <li><a href="watched.html">Watched</a></li>
+          <li><a href="#trending">Trending Today</a></li>
+          <li><a href="favourites.html">Favourites</a></li>
         </ul>
       </div>
     </div>
@@ -374,6 +374,16 @@
 
     // Drama Database
     const dramaDatabase = {
+       "Moon River": {
+        image: "moonriver.jpg",
+        description: "A crown prince mysteriously swaps bodies with an ordinary merchant...",
+        link: "https://asianwiki.com/Moon_River_(Korean_Drama)"
+      },
+      "Dear X": {
+        image: "x.jpg",
+        description: "Baek A Jin grew up enduring domestic violence, forcing her to hide her emotions and survive by reading and manipulating others...",
+        link: "https://asianwiki.com/Dear_X"
+      },
       "Vincenzo": {
         image: "vincenzo.jpg",
         description: "A mafia consigliere takes on corrupt elites in Korea.",
@@ -1563,6 +1573,211 @@
         image: "marry.jpg",
         description: "Ji-won after being killed by her husband who had an affair with her best friend, goes back 10 years in the past and has a chance to change...",
         link: "https://asianwiki.com/Marry_My_Husband"
+      },
+      "Somebody": {
+        image: "somebody.jpg",
+        description: "When a software developer creates a dating app that a serial killer uses to find his next targets...",
+        link: "https://asianwiki.com/Somebody_(Netflix)"
+      },
+      "Strangers Again": {
+        image: "strangersagain.jpg",
+        description: "An otherworldly priest swaps bodies with a K-pop idol...",
+        link: "https://asianwiki.com/Strangers_Again"
+      },
+      "Not Others": {
+        image: "notothers.jpeg",
+        description: "A single mom and her adult cop daughter bear each other's quirks — and even solve criminal cases...",
+        link: "https://asianwiki.com/Not_Others"
+      },
+      "Heartbeat": {
+        image: "heartbeat.jpg",
+        description: "Seon Woo Hyul is a vampire who wants to become a human but ended up becoming half-human when he woke up a day before completing his 100 years of sleep...",
+        link: "https://asianwiki.com/Heartbeat_(Korean_Drama)"
+      },
+      "Cold Hearted Intern": {
+        image: "coldh.jpg",
+        description: "A successful career woman left her job to raise her child. When she attempts to rejoin the workforce several years later...",
+        link: "https://asianwiki.com/Cold_Blooded_Intern"
+      },
+      "Summer Strike": {
+        image: "ss.webp",
+        description: " A young woman declares herself on a life strike and goes to stay in the countryside...",
+        link: "https://asianwiki.com/Summer_Strike"
+      },
+      "The Worst Of Evil": {
+        image: "twoe.jpg",
+        description: "In the 1990s, a police officer goes undercover to infiltrate a mega crime syndicate...",
+        link: "https://asianwiki.com/The_Worst_Of_Evil"
+      },
+      "Taxi Driver": {
+        image: "taxi.jpg",
+        description: "A former special forces soldier delivers revenge for victims of injustice while working for a secret organization that fronts as a taxi company...",
+        link: "https://asianwiki.com/Taxi_Driver_(Korean_Drama)"
+      },
+      "Doona": {
+        image: "doona.jpg",
+        description: "college student becomes acquainted with a Korean pop idol trying to flee her set path...",
+        link: "https://asianwiki.com/Doona!_(Netflix)"
+      },
+      "Strong Girl Namsoon": {
+        image: "sgns.jpg",
+        description: "A girl with unique family superhuman strength went missing after a trip abroad and now is on a mission to find them...",
+        link: "https://asianwiki.com/Strong_Girl_Nam-Soon"
+      },
+      "My Dearest": {
+        image: "dearest.jpg",
+        description: "In a time of war, a noblewoman loses her home and fights to survive while navigating love with a mysterious stranger...",
+        link: "https://asianwiki.com/My_Dearest_(Korean_Drama)"
+      },
+      "Daily Dose Of Sunshine": {
+        image: "daily.jpg",
+        description: "A kind-hearted nurse working in psychiatry goes above and beyond to be a ray of light for those under her care...",
+        link: "https://asianwiki.com/Daily_Dose_of_Sunshine"
+      },
+      "Moon In The Day": {
+        image: "mitd.jpg",
+        description: "he ghost of a general enters a top celeb's body to seek revenge on his lover, who killed him 1,500 years ago...",
+        link: "https://asianwiki.com/Moon_In_The_Day"
+      },
+      "Castaway Diva": {
+        image: "castaway.jpg",
+        description: "A young girl who has always wanted to be a singer gets 15 years of her life lost to an island while running from her abusive father...",
+        link: "https://asianwiki.com/Castaway_Diva"
+      },
+      "Vigilante": {
+        image: "vigilante.jpg",
+        description: "Police officer by day, vigilante by night; a young police student threads by the same principles he swore to prevent to bring justice ...",
+        link: "https://asianwiki.com/Vigilante_(Korean_Drama)"
+      },
+      "A Good Day To Be A Dog": {
+        image: "dog.jpg",
+        description: "A young woman who turns to a dog when kissed and a man who is afraid of dogs gets into an awkward situation...",
+        link: "https://asianwiki.com/A_Good_Day_to_Be_a_Dog"
+      },
+      "Night Has Come": {
+        image: "nhc.jpg",
+        description: "A mystery high-teen death game in which a mafia game takes place for students in Class 2 and 3 who left the retreat...",
+        link: "https://asianwiki.com/Night_Has_Come"
+      },
+      "Gyeongseong Creature": {
+        image: "gyeong.webp",
+        description: "In the spring of 1945, a young man and woman struggle for survival while fighting monsters born out of human greed...",
+        link: "https://asianwiki.com/Gyeongseong_Creature"
+      },
+      "Death's Game": {
+        image: "death.jpg",
+        description: "A man is confronted by Death and tasked with experiencing death over and over again through 13 other lives to earn the chance to live...",
+        link: "https://asianwiki.com/Death%27s_Game"
+      },
+      "Pachinko": {
+        image: "pachinko.jpg",
+        description: "The hopes and dreams of a Korean immigrant family across four generations as they leave their homeland...",
+        link: "https://asianwiki.com/Pachinko_(Drama))"
+      },
+      "A Shop For Killers": {
+        image: "asfk.jpg",
+        description: "A nephew who lost his parents and grew up in the hands of an uncle who runs a shopping mall faces a new truth after his uncle's sudden death...",
+        link: "https://asianwiki.com/A_Shop_for_Killers"
+      },
+      "A Killer's Paradox": {
+        image: "paradox.jpg",
+        description: "When one accidental killing leads to another, an average college student finds himself stuck in an endless cat-and-mouse chase with a shrewd detective...",
+        link: "https://asianwiki.com/A_Killer_Paradox"
+      },
+      "Queen Of Tears": {
+        image: "qot.jpg",
+        description: " A chaebol heiress and her lawyer husband find their marriage on the rocks and on the brink of collapsing...",
+        link: "https://asianwiki.com/Queen_Of_Tears"
+      },
+      "Welcome To Samdalri": {
+        image: "samdal.webp",
+        description: "After suffering a fall from grace, a photographer returns to her hometown and bumps into her childhood friend...",
+        link: "https://asianwiki.com/Welcome_to_Samdal-ri"
+      },
+      "The King's Affection": {
+        image: "tka.jpg",
+        description: "When the crown prince is killed, his twin sister assumes the throne while trying to keep her identity and her affection for her first love a secret...",
+        link: "https://asianwiki.com/The_King%27s_Affection"
+      },
+      "The Impossible Heir": {
+        image: "tiheir.jpg",
+        description: "The illegitimate son of a Korean conglomerate owner, teams up with his ambitious childhood friend, to rise to the top of society....",
+        link: "https://asianwiki.com/The_Impossible_Heir"
+      },
+      "Wonderful World": {
+        image: "ww.jpg",
+        description: "A successful author seeks justice after her perfect life crumbles when her only son is killed in a hit-and-run...",
+        link: "https://asianwiki.com/Wonderful_World_(Korean_Drama)"
+      },
+      "Parasyte The Grey": {
+        image: "parasyte.jpg",
+        description: "People must rise to combat unidentified parasites after they violently take over human hosts and gain power...",
+        link: "https://asianwiki.com/Parasyte:_The_Grey"
+      },
+      "Lovely Runner": {
+        image: "lovely.png",
+        description: "A devastated K-pop fan is given the chance to travel back into the past and potentially reverse the future fate of her favorite idol...",
+        link: "https://asianwiki.com/Lovely_Runner"
+      },
+      "One Ordinary Day": {
+        image: "day.jpg",
+        description: "When an ordinary college student becomes the main suspect of brutal murder case, he must put his trust in an untested lawyer...",
+        link: "https://asianwiki.com/One_Ordinary_Day"
+      },
+      "The Atypical Family": {
+        image: "atypical.jpg",
+        description: " A family who lost their superpowers finds a salvation in a young woman—who's trying to con them in return...",
+        link: "https://asianwiki.com/The_Atypical_Family"
+      },
+      "Run On": {
+        image: "runon.jpg",
+        description: "Veering off course from his preset path, a track star follows his own pace and heart for the first time after a film translator steps into his life...",
+        link: "https://asianwiki.com/Run_On"
+      },
+      "It's Okay That's Love": {
+        image: "thats'slove.jpg",
+        description: "The story of a love affair between a Psychiatrist and a successful writer. Both parties have mental health issues due to events in their past...",
+        link: "https://asianwiki.com/It%27s_Alright,_This_Is_Love"
+      },
+      "My Sweet Mobster": {
+        image: "mobster.jpg",
+        description: "A once legend of the underworld, now CEO of a food company that offers a fresh start to ex-convicts and a kids content creator paths crosses...",
+        link: "https://asianwiki.com/My_Sweet_Mobster"
+      },
+      "The 8 Show": {
+        image: "The8.png",
+        description: "Eight contestants in financial hardship take part in Money Game, a reality competition with 44.8 billion won up for grabs...",
+        link: "https://asianwiki.com/The_8_Show"
+      },
+      "The Heavenly Idol": {
+        image: "heavenly.jpg",
+        description: "An otherworldly priest swaps bodies with a K-pop idol...",
+        link: "https://asianwiki.com/Vigilante_(Korean_Drama)"
+      },
+      "Queen Woo": {
+        image: "qwoo.jpg",
+        description: "Queen Woo becomes the target of princes and their tribes who seek the throne and power after the king of Goguryeo's death...",
+        link: "https://asianwiki.com/Queen_Woo"
+      },
+      "Love Next Door": {
+        image: "nextdoor.jpg",
+        description: "A woman attempting to reboot her life returns to Korea and becomes entangled with her childhood friend...",
+        link: "https://asianwiki.com/Love_Next_Door"
+      },
+      "The Frog": {
+        image: "frog.jpg",
+        description: "One tranquil summer, a mysterious woman checks into a vacation rental — triggering events that disrupt the lives of the owner and those around him...",
+        link: "https://asianwiki.com/The_Frog_(Netflix)"
+      },
+      "Study Group": {
+        image: "study.jpg",
+        description: "A struggling student at Korea's worst high school forms a study group while protecting his classmates with his fighting skills...",
+        link: "https://asianwiki.com/Study_Group"
+      },
+      "The Judge From Hell": {
+        image: "helljudge.webp",
+        description: "A devil secretly lives in the body of a judge with a mission to drag criminals back to hell...",
+        link: "https://asianwiki.com/The_Judge_from_Hell"
       }
     };
 
