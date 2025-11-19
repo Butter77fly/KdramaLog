@@ -48,6 +48,7 @@ html {
   font-size: 1.9rem;
   font-weight: 700;
   color: var(--text-color, #fff);
+  padding-top: 30px;
 }
 
 /* the 3D stage */
@@ -469,6 +470,9 @@ form label {
   font-size: .8rem;
   margin-bottom: .5rem;
   text-align: center;
+  max-height: 140px;
+  overflow-y: auto;
+  padding-right: 4px;
 }
 
 .card_back a {
